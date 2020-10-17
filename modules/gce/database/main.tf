@@ -5,6 +5,9 @@ resource "google_sql_database_instance" "master" {
   database_version = "MYSQL_5_6"
 
   settings {
+    backup_configuration {
+      enabled = true
+    }
     tier      = "${var.db_tier}"
     disk_size = "${var.disk_size}"
     disk_type = "${var.disk_type}"
