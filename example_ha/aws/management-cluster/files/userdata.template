@@ -34,4 +34,3 @@ rancher:
       net: host
       volumes:
         - /etc/nginx/conf.d:/etc/nginx/conf.d
-      

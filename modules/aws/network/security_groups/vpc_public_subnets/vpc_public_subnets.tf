@@ -6,9 +6,10 @@ variable "public_subnet_cidrs" {}
 
 resource "aws_security_group" "vpc_allow_from_public_subnets" {
   name   = "${var.name}-vpc-allow-all-public-subnets-sg"
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   egress {
+    description = "All out"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -16,34 +17,38 @@ resource "aws_security_group" "vpc_allow_from_public_subnets" {
   }
 
   ingress {
-    from_port = 0
-    to_port   = 65535
-    protocol  = "tcp"
-    self      = true
-  }
-
-  ingress {
-    from_port = 0
-    to_port   = 65535
-    protocol  = "udp"
-    self      = true
-  }
-
-  ingress {
+    description = "All in for me tcp"
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = "${split(",", var.public_subnet_cidrs)}"
+    self        = true
   }
 
   ingress {
+    description = "All in for me udp"
     from_port   = 0
     to_port     = 65535
     protocol    = "udp"
-    cidr_blocks = "${split(",", var.public_subnet_cidrs)}"
+    self        = true
+  }
+
+  ingress {
+    description = "All in for tcp"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = split(",", var.public_subnet_cidrs)
+  }
+
+  ingress {
+    description = "All in for udp"
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "udp"
+    cidr_blocks = split(",", var.public_subnet_cidrs)
   }
 }
 
 output "id" {
-  value = "${aws_security_group.vpc_allow_from_public_subnets.id}"
+  value = aws_security_group.vpc_allow_from_public_subnets.id
 }

@@ -8,11 +8,11 @@ variable "server_count" {
 }
 
 variable "service_account_scopes" {
-  type = "list"
+  type = list
 }
 
 variable "instance_metadata" {
-  type    = "map"
+  type    = map
   default = {}
 }
 
@@ -21,7 +21,7 @@ variable "instance_zone" {
 }
 
 variable "instance_tags" {
-  type    = "list"
+  type    = list
   default = []
 }
 

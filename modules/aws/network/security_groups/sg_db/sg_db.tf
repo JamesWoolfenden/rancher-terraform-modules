@@ -3,7 +3,7 @@ variable "vpc_id" {}
 variable "security_group_name" {}
 
 variable "source_cidr_blocks" {
-  type = "list"
+  type = list
 }
 
 resource "aws_security_group" "db_security_group" {

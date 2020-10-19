@@ -35,6 +35,6 @@ variable "cloudflare_email" {
 }
 
 variable "aws_key_pair" {
-  type    = "string"
+  type    = string
   default = "value"
 }

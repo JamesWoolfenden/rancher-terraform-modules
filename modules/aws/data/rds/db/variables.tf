@@ -48,7 +48,7 @@ variable "db_parameter_group" {
 
 // RDS Subnet Group Variables
 variable "db_subnet_ids" {
-  type = "list"
+  type = list
 }
 
 variable "skip_final_snapshot" {
@@ -60,5 +60,5 @@ variable "backup_retention_period" {
 }
 
 variable "tags" {
-  type = "map"
+  type = map
 }

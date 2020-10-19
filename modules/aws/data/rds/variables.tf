@@ -7,11 +7,11 @@ variable "vpc_id" {}
 variable "rds_instance_class" {}
 
 variable "db_subnet_ids" {
-  type = "list"
+  type = list
 }
 
 variable "source_cidr_blocks" {
-  type = "list"
+  type = list
 }
 
 variable "rds_allocated_storage" {
@@ -67,5 +67,5 @@ variable "rds_parameter_group_family" {
 }
 
 variable "tags" {
-  type = "map"
+  type = map
 }

@@ -29,7 +29,7 @@ data "template_file" "userdata" {
   template = "${file("${path.module}/files/userdata.template")}"
 
   vars {
-    database_endpoint = "${element(split(":", data.terraform_remote_state.database.endpoint),0)}"
+    database_endpoint = "${element(split(":", data.terraform_remote_state.database.endpoint), 0)}"
     ip-addr           = "local-ipv4"
     database_name     = "${data.terraform_remote_state.database.database}"
     database_user     = "${data.terraform_remote_state.database.username}"

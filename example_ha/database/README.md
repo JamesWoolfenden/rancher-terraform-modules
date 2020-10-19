@@ -3,8 +3,8 @@
 ---
 The database module will create the following resources:
 
- * RDS - MySQL database instance
- * Security group allowing access to the DB instances.
+* RDS - MySQL database instance
+* Security group allowing access to the DB instances.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ You will need to either use a remote state from the network module, or you will 
 
 You will need to populate the following variables in this section:
 
-```
+```terraform
 database_password="password"
 aws_rds_instance_class="db.m3.medium"
 aws_env_name = "rancher-database"
@@ -32,8 +32,9 @@ Will show what terraform would plan to do.
 ## Outputs
 
 The following will be outputs that can be imported by other components via remote state.
-  * database - The name of the database created.
-  * password - The password that should be used to connect to the database. Keep in mind this should be guarded closely.
-  * username - The username for connecting to the database.
-  * endpoint - The RDS endpoint to connect to.
-  * address  - RDS internal DNS/host name without port
+
+* database - The name of the database created.
+* password - The password that should be used to connect to the database. Keep in mind this should be guarded closely.
+* username - The username for connecting to the database.
+* endpoint - The RDS endpoint to connect to.
+* address  - RDS internal DNS/host name without port

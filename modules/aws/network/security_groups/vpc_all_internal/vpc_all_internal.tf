@@ -6,9 +6,10 @@ variable "vpc_cidr" {}
 
 resource "aws_security_group" "vpc_all" {
   name   = "${var.name}-vpc-allow-all-internal-sg"
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   egress {
+    description = "all out"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -16,6 +17,8 @@ resource "aws_security_group" "vpc_all" {
   }
 
   ingress {
+    description = "tcp me in"
+
     from_port = 0
     to_port   = 65535
     protocol  = "tcp"
@@ -23,6 +26,8 @@ resource "aws_security_group" "vpc_all" {
   }
 
   ingress {
+    description = "udp me in"
+
     from_port = 0
     to_port   = 65535
     protocol  = "udp"
@@ -30,20 +35,24 @@ resource "aws_security_group" "vpc_all" {
   }
 
   ingress {
+    description = "tcp in"
+
     from_port   = 0
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = ["${var.vpc_cidr}"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   ingress {
+    description = "udp in"
+
     from_port   = 0
     to_port     = 65535
     protocol    = "udp"
-    cidr_blocks = ["${var.vpc_cidr}"]
+    cidr_blocks = [var.vpc_cidr]
   }
 }
 
 output "vpc_all_id" {
-  value = "${aws_security_group.vpc_all.id}"
+  value = aws_security_group.vpc_all.id
 }

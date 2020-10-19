@@ -18,7 +18,7 @@ You should have the main-vars.tfvars file populated in the main directory before
 
 For the network you will need to define the following variables in the `network.tfvars`
 
-```
+```terraform
 aws_env_name = "production"
 aws_vpc_cidr = "10.0.0.0/16"                          # CIDR block for the whole VPC
 aws_private_subnet_cidrs = "10.0.0.0/24,10.0.64.0/24" # Should be one per Availability Zone
@@ -37,7 +37,7 @@ Once updated, the command:
 
 will show what terraform would plan to do.
 
-`make plan-output` 
+`make plan-output`
 
 will make a plan file. To execute the plan file:
 
@@ -47,7 +47,7 @@ will make a plan file. To execute the plan file:
 
 The following will be outputs that can be imported by other components via remote state.
 
-```
+```json
 "vpc_id"
 "aws_public_subnet_cidrs"
 "aws_private_subnet_cidrs"

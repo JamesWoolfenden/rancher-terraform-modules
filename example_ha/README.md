@@ -2,7 +2,7 @@
 
 ---
 
-The configurations here are for reference using the modules for AWS. They model an HA setup and creation of a Rancher Kuberenetes HA environment. They are meant to be a starting point and extended to meet your own needs.
+The configurations here are for reference using the modules for AWS. They model an HA set-up and creation of a Rancher Kuberenetes HA environment. They are meant to be a starting point and extended to meet your own needs.
 
 ## Building Blocks
 
@@ -12,13 +12,13 @@ The Terraform components are laid out to handle the base level network creating 
 
 The database layer is delivered through RDS in this case. The username/Db and connection strings are all exported.
 
-The management layer is then deployed using Rancher OS in an HA setup behind an ELB.
+The management layer is then deployed using Rancher OS in an HA set-up behind an ELB.
 
-There is a common Makefile that provides a simple interface for working with Terraform. 
+There is a common Makefile that provides a simple interface for working with Terraform.
 
 ## Getting Started
 
-To get started the first thing to do is decide which components are going to be used. 
+To get started the first thing to do is decide which components are going to be used.
 
 The `main-vars.tfvars` file is meant to define all of the provider type variables / secrets. For instance AWS keys, DNS Provider Keys, Rancher API keys, etc. This is not meant to define all of the variables for each of the major subsystems. Subsystem variables are best handled via remote state if they need to share.
 
@@ -26,4 +26,4 @@ Once the main variables have been set, the next step is to create the [network](
 
 The [database]() level should be created.
 
-The [mangement cluster]() should be the last item built. 
+The [management cluster]() should be the last item built.

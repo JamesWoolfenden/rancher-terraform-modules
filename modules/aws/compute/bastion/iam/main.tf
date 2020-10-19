@@ -2,7 +2,7 @@ variable "name" {}
 
 resource "aws_iam_instance_profile" "eip_assignment" {
   name = "${var.name}-eip-assignment-profile"
-  role = "${aws_iam_role.eip_assignment.name}"
+  role = aws_iam_role.eip_assignment.name
 }
 
 resource "aws_iam_role" "eip_assignment" {
@@ -27,7 +27,7 @@ EOF
 
 resource "aws_iam_role_policy" "eip_assignment" {
   name = "${var.name}-eip-assignment-policy"
-  role = "${aws_iam_role.eip_assignment.id}"
+  role = aws_iam_role.eip_assignment.id
 
   policy = <<EOF
 {
@@ -52,9 +52,9 @@ EOF
 }
 
 output "profile_name" {
-  value = "${aws_iam_instance_profile.eip_assignment.name}"
+  value = aws_iam_instance_profile.eip_assignment.name
 }
 
 output "profile_id" {
-  value = "${aws_iam_instance_profile.eip_assignment.id}"
+  value = aws_iam_instance_profile.eip_assignment.id
 }
