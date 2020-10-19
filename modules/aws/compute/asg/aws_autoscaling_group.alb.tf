@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "alb" {
   name  = "${var.name}-asg"
-  count = "${1 - var.use_elb}"
+  count = 1 - var.use_elb
 
   min_size         = var.scale_min_size
   max_size         = var.scale_max_size

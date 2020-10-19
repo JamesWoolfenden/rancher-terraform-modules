@@ -1,23 +1,22 @@
 resource "aws_elb" "rancher_elb" {
   name = "${var.name}-elb"
 
-  #availability_zones        = "${split(",", var.azs)}"
-  subnets                   = ["${split(",", var.public_subnets)}"]
+  subnets                   = [split(",", var.public_subnets)]
   cross_zone_load_balancing = true
   internal                  = false
-  security_groups           = ["${split(",", var.security_groups)}"]
+  security_groups           = [split(",", var.security_groups)]
 
   listener {
-    instance_port      = "${var.instance_ssl_port}"
-    instance_protocol  = "${var.instance_ssl_port_proto}"
+    instance_port      = var.instance_ssl_port
+    instance_protocol  = var.instance_ssl_port_proto
     lb_port            = 443
     lb_protocol        = "ssl"
-    ssl_certificate_id = "${var.ssl_certificate_arn}"
+    ssl_certificate_id = var.ssl_certificate_arn
   }
 
   listener {
-    instance_port     = "${var.instance_http_port}"
-    instance_protocol = "${var.instance_http_port_proto}"
+    instance_port     = var.instance_http_port
+    instance_protocol = var.instance_http_port_proto
     lb_port           = 80
     lb_protocol       = "tcp"
   }
@@ -27,7 +26,7 @@ resource "aws_elb" "rancher_elb" {
     unhealthy_threshold = 4
     timeout             = 5
 
-    target   = "${var.health_check_target}"
+    target   = var.health_check_target
     interval = 7
   }
 }

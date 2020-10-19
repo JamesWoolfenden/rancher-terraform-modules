@@ -19,10 +19,10 @@ variable "azs" {}
 variable "igw_id" {}
 
 resource "aws_subnet" "public" {
-  vpc_id            = "${var.vpc_id}"
-  cidr_block        = "${element(split(",", var.cidrs), count.index)}"
-  availability_zone = "${element(split(",", var.azs), count.index)}"
-  count             = "${length(split(",", var.cidrs))}"
+  vpc_id            = var.vpc_id
+  cidr_block        = element(split(",", var.cidrs), count.index)
+  availability_zone = element(split(",", var.azs), count.index)
+  count             = length(split(",", var.cidrs))
 
   tags {
     Name = "${var.name}.${element(split(",", var.azs), count.index)}"
@@ -36,11 +36,11 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${var.igw_id}"
+    gateway_id = var.igw_id
   }
 
   tags {
@@ -49,11 +49,11 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table_association" "public" {
-  count          = "${length(split(",", var.cidrs))}"
-  subnet_id      = "${element(aws_subnet.public.*.id, count.index)}"
-  route_table_id = "${aws_route_table.public.id}"
+  count          = length(split(",", var.cidrs))
+  subnet_id      = element(aws_subnet.public.*.id, count.index)
+  route_table_id = aws_route_table.public.id
 }
 
 output "subnet_ids" {
-  value = "${join(",", aws_subnet.public.*.id)}"
+  value = join(",", aws_subnet.public.*.id)
 }

@@ -5,7 +5,7 @@ variable "name" {}
 resource "aws_security_group" "web_elb_front" {
   name        = "${var.name}-web-elb-world"
   description = "Allow ports rancher "
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   egress {
     from_port   = 0
@@ -32,7 +32,7 @@ resource "aws_security_group" "web_elb_front" {
 resource "aws_security_group" "web_elb_back" {
   name        = "${var.name}-web-elb-hosts"
   description = "Allow Connection from elb"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   egress {
     from_port   = 0

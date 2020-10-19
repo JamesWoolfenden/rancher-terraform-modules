@@ -13,12 +13,12 @@ variable "name" {
 variable "cidr" {}
 
 resource "aws_vpc" "vpc" {
-  cidr_block           = "${var.cidr}"
+  cidr_block           = var.cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags {
-    Name = "${var.name}"
+    Name = var.name
   }
 
   lifecycle {
@@ -27,9 +27,9 @@ resource "aws_vpc" "vpc" {
 }
 
 output "vpc_id" {
-  value = "${aws_vpc.vpc.id}"
+  value = aws_vpc.vpc.id
 }
 
 output "vpc_cidr" {
-  value = "${aws_vpc.vpc.cidr_block}"
+  value = aws_vpc.vpc.cidr_block
 }

@@ -9,7 +9,7 @@ variable "source_cidr_blocks" {
 resource "aws_security_group" "db_security_group" {
   name        = "${var.security_group_name}"
   description = "Security Group ${var.security_group_name}"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
 
   // allows traffic from the SG itself for tcp
   ingress {

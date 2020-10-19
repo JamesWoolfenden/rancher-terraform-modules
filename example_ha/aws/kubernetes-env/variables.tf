@@ -2,14 +2,6 @@ variable "name" {}
 
 variable "project_template_id" {}
 
-variable "rancher_access_key" {}
-
-variable "rancher_secret_key" {}
-
-variable "aws_access_key" {}
-
-variable "aws_secret_key" {}
-
 variable "aws_region" {}
 
 variable "vpc_id" {}
