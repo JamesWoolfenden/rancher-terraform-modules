@@ -1,7 +1,4 @@
 # Configure the DigitalOcean Provider
-provider "digitalocean" {
-  token = var.digitalocean_token
-}
 
 data "template_file" "user_data" {
   template = file("${path.module}/user-data-ubuntu.tpl")

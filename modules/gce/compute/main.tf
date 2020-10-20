@@ -41,7 +41,7 @@ resource "google_compute_http_health_check" "rancher-servers" {
 resource "google_compute_target_pool" "rancher-servers" {
   name        = "rancher-servers-target"
   description = "Target pool for Rancher Servers"
-  depends_on  = ["google_compute_http_health_check.rancher-servers"]
+  depends_on  = [google_compute_http_health_check.rancher-servers]
 
   health_checks = [
     google_compute_http_health_check.rancher-servers.name,
