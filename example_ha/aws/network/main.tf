@@ -1,7 +1,3 @@
-provider "aws" {
-
-  region = var.aws_region
-}
 
 module "vpc_network" {
   source = "../../../modules/aws/network/networks/full-vpc"
