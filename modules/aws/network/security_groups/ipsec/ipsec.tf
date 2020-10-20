@@ -3,6 +3,9 @@ variable "name" {}
 variable "vpc_id" {}
 
 variable "environment_cidrs" {}
+variable "common_tags" {
+  type = map
+}
 
 resource "aws_security_group" "rancher_ip_sec" {
   name   = "${var.name}-sg"
@@ -47,6 +50,7 @@ resource "aws_security_group" "rancher_ip_sec" {
     protocol    = "udp"
     cidr_blocks = [split(",", var.environment_cidrs)]
   }
+  tags = var.common_tags
 }
 
 output "ipsec_id" {

@@ -4,6 +4,9 @@ variable "vpc_id" {}
 
 variable "vpc_cidr" {}
 
+variable "common_tags" {
+  type = map
+}
 resource "aws_security_group" "vpc_all" {
   name   = "${var.name}-vpc-allow-all-internal-sg"
   vpc_id = var.vpc_id
@@ -51,6 +54,8 @@ resource "aws_security_group" "vpc_all" {
     protocol    = "udp"
     cidr_blocks = [var.vpc_cidr]
   }
+
+  tags = var.common_tags
 }
 
 output "vpc_all_id" {

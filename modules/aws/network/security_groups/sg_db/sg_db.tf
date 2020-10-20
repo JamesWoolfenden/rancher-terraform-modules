@@ -6,6 +6,9 @@ variable "source_cidr_blocks" {
   type = list
 }
 
+variable "common_tags" {
+  type = map
+}
 resource "aws_security_group" "db_security_group" {
   name        = "${var.security_group_name}"
   description = "Security Group ${var.security_group_name}"
@@ -42,6 +45,7 @@ resource "aws_security_group" "db_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["${var.source_cidr_blocks}"]
   }
+  tags = var.common_tags
 }
 
 output "security_group_id_database" {

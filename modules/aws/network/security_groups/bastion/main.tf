@@ -2,6 +2,10 @@ variable "vpc_id" {}
 
 variable "name" {}
 
+variable "common_tags" {
+  type = map
+}
+
 resource "aws_security_group" "bastion_host" {
   name        = "${var.name}-bastion-host"
   description = "Security group to allow external SSH access"
@@ -20,6 +24,8 @@ resource "aws_security_group" "bastion_host" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.common_tags
 }
 
 output "bastion_id" {

@@ -1,7 +1,9 @@
 variable "vpc_id" {}
 
 variable "name" {}
-
+variable "common_tags" {
+  type = map
+}
 resource "aws_security_group" "web_elb_front" {
   name        = "${var.name}-web-elb-world"
   description = "Allow ports rancher "
@@ -27,6 +29,7 @@ resource "aws_security_group" "web_elb_front" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.common_tags
 }
 
 resource "aws_security_group" "web_elb_back" {
@@ -54,6 +57,7 @@ resource "aws_security_group" "web_elb_back" {
     protocol        = "tcp"
     security_groups = ["${aws_security_group.web_elb_front.id}"]
   }
+  tags = var.common_tags
 }
 
 output "web_elb_sg_ids" {

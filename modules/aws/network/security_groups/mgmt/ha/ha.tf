@@ -3,6 +3,9 @@ variable "name" {}
 variable "vpc_id" {}
 
 variable "private_subnet_cidrs" {}
+variable "common_tags" {
+  type = map
+}
 
 resource "aws_security_group" "management_elb" {
   name        = "${var.name}-management_elb_sg"
@@ -29,6 +32,7 @@ resource "aws_security_group" "management_elb" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.common_tags
 }
 
 resource "aws_security_group" "management_allow_elb" {
@@ -63,6 +67,7 @@ resource "aws_security_group" "management_allow_elb" {
     protocol        = "tcp"
     security_groups = [aws_security_group.management_elb.id]
   }
+  tags = var.common_tags
 }
 
 resource "aws_security_group" "management_allow_internal" {
@@ -111,6 +116,7 @@ resource "aws_security_group" "management_allow_internal" {
     protocol    = "tcp"
     cidr_blocks = [split(",", var.private_subnet_cidrs)]
   }
+  tags = var.common_tags
 }
 
 output "elb_sg_id" {

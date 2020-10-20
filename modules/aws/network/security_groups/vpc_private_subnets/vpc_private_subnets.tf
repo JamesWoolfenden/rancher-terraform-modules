@@ -4,6 +4,9 @@ variable "vpc_id" {}
 
 variable "private_subnet_cidrs" {}
 
+variable "common_tags" {
+  type = map
+}
 resource "aws_security_group" "vpc_allow_from_private_subnets" {
   name   = "${var.name}-vpc-allow-all-private-subnets-sg"
   vpc_id = var.vpc_id
@@ -47,6 +50,7 @@ resource "aws_security_group" "vpc_allow_from_private_subnets" {
     protocol    = "udp"
     cidr_blocks = split(",", var.public_subnet_cidrs)
   }
+  tags = var.common_tags
 }
 
 output "id" {

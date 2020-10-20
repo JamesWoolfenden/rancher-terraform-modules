@@ -3,7 +3,9 @@ variable "name" {}
 variable "vpc_id" {}
 
 variable "private_subnet_cidrs" {}
-
+variable "common_tags" {
+  type = map
+}
 resource "aws_security_group" "management_ui_elb" {
   name        = "${var.name}-management_ui_elb_sg"
   description = "Allow ports rancher "
@@ -29,6 +31,7 @@ resource "aws_security_group" "management_ui_elb" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.common_tags
 }
 
 resource "aws_security_group" "management_allow_ui_elb" {
@@ -70,6 +73,7 @@ resource "aws_security_group" "management_allow_ui_elb" {
     protocol        = "tcp"
     security_groups = [aws_security_group.management_ui_elb.id]
   }
+  tags = var.common_tags
 }
 
 resource "aws_security_group" "management_allow_ui_internal" {
@@ -90,6 +94,7 @@ resource "aws_security_group" "management_allow_ui_internal" {
     protocol    = "tcp"
     cidr_blocks = [split(",", var.private_subnet_cidrs)]
   }
+  tags = var.common_tags
 }
 
 output "elb_sg_id" {
