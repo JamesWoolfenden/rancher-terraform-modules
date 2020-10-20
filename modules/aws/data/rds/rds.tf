@@ -4,6 +4,7 @@ module "aws_sg_db" {
   vpc_id              = var.vpc_id
   source_cidr_blocks  = var.source_cidr_blocks
   security_group_name = var.security_group_name
+  common_tags=var.common_tags
 }
 
 module "aws_database" {
@@ -28,7 +29,7 @@ module "aws_database" {
   db_parameter_group    = aws_db_parameter_group.default.name
 
   // Tags
-  tags = var.tags
+  common_tags = var.common_tags
 }
 
 resource "aws_db_parameter_group" "default" {

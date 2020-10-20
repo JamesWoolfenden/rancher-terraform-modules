@@ -26,7 +26,7 @@ resource "aws_db_instance" "main_rds_instance" {
   multi_az     = var.rds_is_multi_az
   storage_type = var.rds_storage_type
 
-  tags = var.tags
+  tags = var.common_tags
 }
 
 resource "aws_db_subnet_group" "main_db_subnet_group" {

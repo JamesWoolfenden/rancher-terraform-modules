@@ -2,7 +2,9 @@ variable "name" {}
 
 variable "vpc_id" {}
 
-variable "environment_cidrs" {}
+variable "environment_cidrs" {
+  type=list
+}
 
 variable "common_tags" {
   type = map
@@ -41,7 +43,7 @@ resource "aws_security_group" "rancher_ip_sec" {
     from_port   = 500
     to_port     = 500
     protocol    = "udp"
-    cidr_blocks = [split(",", var.environment_cidrs)]
+    cidr_blocks = var.environment_cidrs
   }
 
   ingress {
@@ -49,7 +51,7 @@ resource "aws_security_group" "rancher_ip_sec" {
     from_port   = 4500
     to_port     = 4500
     protocol    = "udp"
-    cidr_blocks = [split(",", var.environment_cidrs)]
+    cidr_blocks = var.environment_cidrs
   }
   tags = var.common_tags
 }

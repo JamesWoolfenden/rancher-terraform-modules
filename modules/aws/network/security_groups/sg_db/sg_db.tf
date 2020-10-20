@@ -10,12 +10,13 @@ variable "common_tags" {
   type = map
 }
 resource "aws_security_group" "db_security_group" {
-  name        = "${var.security_group_name}"
+  name        = var.security_group_name
   description = "Security Group ${var.security_group_name}"
   vpc_id      = var.vpc_id
 
   // allows traffic from the SG itself for tcp
   ingress {
+    description="All self tcp"
     from_port = 0
     to_port   = 65535
     protocol  = "tcp"
@@ -24,6 +25,7 @@ resource "aws_security_group" "db_security_group" {
 
   // allows traffic from the SG itself for udp
   ingress {
+        description="All self udp"
     from_port = 0
     to_port   = 65535
     protocol  = "udp"
@@ -32,22 +34,24 @@ resource "aws_security_group" "db_security_group" {
 
   // egress
   egress {
+    description="All outbound"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["${var.source_cidr_blocks}"]
+    cidr_blocks = [var.source_cidr_block]
   }
 
   // allow traffic for TCP 3306
   ingress {
+    description="Inbound 3306"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["${var.source_cidr_blocks}"]
+    cidr_blocks = [var.source_cidr_blocks]
   }
   tags = var.common_tags
 }
 
 output "security_group_id_database" {
-  value = "${aws_security_group.db_security_group.id}"
+  value = aws_security_group.db_security_group.id
 }

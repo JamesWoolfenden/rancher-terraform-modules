@@ -6,13 +6,13 @@ resource "aws_autoscaling_group" "elb" {
   max_size         = var.scale_max_size
   desired_capacity = var.scale_desired_size
 
-  vpc_zone_identifier  = [split(",", var.subnet_ids)]
+  vpc_zone_identifier  = var.subnet_ids
   launch_configuration = aws_launch_configuration.config.name
 
   health_check_grace_period = 900
   health_check_type         = var.health_check_type
   force_delete              = false
-  load_balancers            = [split(",", var.lb_ids)]
+  load_balancers            = var.lb_ids
 
   tags = [
     {
@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "elb" {
       value               = var.spot_enabled
       propagate_at_launch = true
     },
-    var.tags,
+    var.common_tags,
   ]
 
   lifecycle {

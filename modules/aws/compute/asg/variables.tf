@@ -65,8 +65,7 @@ variable "iam_instance_profile" {
 }
 
 // Ref: https://github.com/hashicorp/terraform-aws-consul/blob/master/modules/consul-cluster/variables.tf
-variable "tags" {
+variable "common_tags" {
   description = "List fo extra tag blocks added to the autoscaling group configuration. Each element in the list is a map containing keys 'key', 'value', and 'propagate_at_launch' mapped to the respective values."
-  type        = list
-  default     = []
+  type        = map
 }

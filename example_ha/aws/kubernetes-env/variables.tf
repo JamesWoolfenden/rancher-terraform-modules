@@ -6,16 +6,22 @@ variable "aws_region" {}
 
 variable "vpc_id" {}
 
-variable "ipsec_node_cidrs" {}
+variable "ipsec_node_cidrs" {type=list}
 
 variable "ssh_key_name" {}
 
 variable "subnet_ids" {}
-
-variable "subnet_cidrs" {}
 
 variable "aws_instance_type" {}
 
 variable "cattle_agent_ip" {}
 
 variable "rancher_api_url" {}
+
+variable "subnet_cidrs" {
+    type = list
+}
+
+variable "common_tags" {
+    type=map
+}

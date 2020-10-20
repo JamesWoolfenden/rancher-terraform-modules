@@ -1,11 +1,3 @@
-//
-
-// Module: tf_aws_rds
-
-//
-
-// RDS Instance Variables
-
 variable "rds_instance_name" {}
 
 variable "rds_is_multi_az" {
@@ -59,6 +51,6 @@ variable "backup_retention_period" {
   default = 1
 }
 
-variable "tags" {
+variable "common_tags" {
   type = map
 }

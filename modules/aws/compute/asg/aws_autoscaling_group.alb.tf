@@ -9,9 +9,9 @@ resource "aws_autoscaling_group" "alb" {
   health_check_grace_period = 900
   health_check_type         = var.health_check_type
   force_delete              = false
-  target_group_arns         = [split(",", var.target_group_arn)]
+  target_group_arns         = var.target_group_arn
 
-  vpc_zone_identifier  = [split(",", var.subnet_ids)]
+  vpc_zone_identifier  = var.subnet_ids
   launch_configuration = aws_launch_configuration.config.name
 
   tags = [
@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "alb" {
       value               = var.spot_enabled
       propagate_at_launch = true
     },
-    var.tags,
+    var.common_tags,
   ]
 
   lifecycle {

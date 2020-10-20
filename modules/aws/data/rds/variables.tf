@@ -66,6 +66,6 @@ variable "rds_parameter_group_family" {
   default = "mysql5.6"
 }
 
-variable "tags" {
+variable "common_tags" {
   type = map
 }

@@ -2,7 +2,7 @@ resource "aws_launch_configuration" "config" {
   name_prefix = "Launch-Config-${var.name}"
   image_id    = var.ami_id
 
-  security_groups = [split(",", var.security_groups)]
+  security_groups = var.security_groups
 
   instance_type               = var.instance_type
   key_name                    = var.ssh_key_name
@@ -20,5 +20,4 @@ resource "aws_launch_configuration" "config" {
   lifecycle {
     create_before_destroy = true
   }
-
 }
