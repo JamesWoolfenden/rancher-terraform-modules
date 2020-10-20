@@ -2,10 +2,6 @@ variable "rancher_hostname" {}
 
 variable "domain_name" {}
 
-variable "aws_access_key" {}
-
-variable "aws_secret_key" {}
-
 variable "aws_region" {}
 
 variable "aws_ami_id" {}
@@ -38,3 +34,18 @@ variable "aws_key_pair" {
   type    = string
   default = "value"
 }
+
+variable "common_tags" {}
+
+variable "vpc_id" {}
+
+variable "rancher_com_arn" {}
+
+variable "public_subnet_cidrs" {}
+
+variable "public_subnet_ids" {}
+
+variable "username" {}
+variable "password" {}
+variable "database_endpoint" {}
+variable "database" {}

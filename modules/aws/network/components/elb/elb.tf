@@ -1,10 +1,10 @@
 resource "aws_elb" "rancher_elb" {
   name = "${var.name}-elb"
 
-  subnets                   = [split(",", var.public_subnets)]
+  subnets                   = var.public_subnets
   cross_zone_load_balancing = true
   internal                  = false
-  security_groups           = [split(",", var.security_groups)]
+  security_groups           = var.security_groups
 
   listener {
     instance_port      = var.instance_ssl_port
@@ -33,7 +33,7 @@ resource "aws_elb" "rancher_elb" {
 
 resource "aws_proxy_protocol_policy" "elb_policy" {
   load_balancer  = aws_elb.rancher_elb.name
-  instance_ports = [split(",", var.proxy_proto_port_string)]
+  instance_ports = [var.proxy_proto_port_string]
 }
 
 output "elb_id" {

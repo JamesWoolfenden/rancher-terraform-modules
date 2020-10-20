@@ -86,35 +86,35 @@ resource "aws_security_group" "management_allow_internal" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [split(",", var.private_subnet_cidrs)]
+    cidr_blocks = var.private_subnet_cidrs
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [split(",", var.private_subnet_cidrs)]
+    cidr_blocks = var.private_subnet_cidrs
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [split(",", var.private_subnet_cidrs)]
+    cidr_blocks = var.private_subnet_cidrs
   }
 
   ingress {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [split(",", var.private_subnet_cidrs)]
+    cidr_blocks = var.private_subnet_cidrs
   }
 
   ingress {
     from_port   = 9345
     to_port     = 9345
     protocol    = "tcp"
-    cidr_blocks = [split(",", var.private_subnet_cidrs)]
+    cidr_blocks = var.private_subnet_cidrs
   }
   tags = var.common_tags
 }
@@ -124,6 +124,5 @@ output "elb_sg_id" {
 }
 
 output "management_node_sgs" {
-  value = join(",", list(aws_security_group.management_allow_elb.id,
-  aws_security_group.management_allow_internal.id))
+  value = [aws_security_group.management_allow_elb.id, aws_security_group.management_allow_internal.id]
 }

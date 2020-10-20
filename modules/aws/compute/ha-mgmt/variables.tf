@@ -4,7 +4,9 @@ variable "name" {}
 
 variable "ami_id" {}
 
-variable "security_groups" {}
+variable "security_groups" {
+  type = list(string)
+}
 
 variable "spot_enabled" {
   default = "false"
@@ -17,7 +19,7 @@ variable "instance_type" {
 variable "ssh_key_name" {}
 
 variable "lb_ids" {
-  default = ""
+  type = list(string)
 }
 
 variable "scale_min_size" {
@@ -58,8 +60,7 @@ variable "root_volume_size" {
 }
 
 // Ref: https://github.com/hashicorp/terraform-aws-consul/blob/master/modules/consul-cluster/variables.tf
-variable "tags" {
+variable "common_tags" {
   description = "List fo extra tag blocks added to the autoscaling group configuration. Each element in the list is a map containing keys 'key', 'value', and 'propagate_at_launch' mapped to the respective values."
-  type        = list
-  default     = []
+  type        = map
 }

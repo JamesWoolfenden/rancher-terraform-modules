@@ -18,7 +18,7 @@ module "asg" {
   health_check_target = var.health_check_target
   spot_enabled        = var.spot_enabled
   root_volume_size    = var.root_volume_size
-  tags                = var.tags
+  common_tags         = var.common_tags
 }
 
 output "asg_name" {

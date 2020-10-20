@@ -6,7 +6,9 @@ variable "subnet_ids" {}
 
 variable "ssh_key_name" {}
 
-variable "lb_ids" {}
+variable "lb_ids" {
+  type = list(string)
+}
 
 variable "use_elb" {
   description = "To use ELB pass 1, to use ALB pass 0"
@@ -36,7 +38,8 @@ variable "scale_max_size" {
 variable "ami_id" {}
 
 variable "security_groups" {
-  default = ""
+  type    = list(string)
+  default = [""]
 }
 
 variable "instance_type" {

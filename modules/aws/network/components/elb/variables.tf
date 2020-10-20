@@ -1,8 +1,12 @@
 variable "name" {}
 
-variable "security_groups" {}
+variable "security_groups" {
+  type = list
+}
 
-variable "public_subnets" {}
+variable "public_subnets" {
+  type = list
+}
 
 variable "ssl_certificate_arn" {}
 
@@ -27,5 +31,5 @@ variable "health_check_target" {
 }
 
 variable "proxy_proto_port_string" {
-  default = "81,444"
+  default = ["81", "444"]
 }
