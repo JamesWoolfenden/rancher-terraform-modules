@@ -13,6 +13,9 @@ resource "google_sql_database_instance" "master" {
     disk_type = var.disk_type
 
     ip_configuration {
+      ip_configuration {
+        require_ssl = true
+      }
       ipv4_enabled = true
     }
   }
