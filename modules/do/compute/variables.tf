@@ -9,7 +9,7 @@ variable "instance_type" {
 variable "docker_cmd" {}
 
 variable "ssh_keys" {
-  type = list
+  type = list(any)
 }
 
 variable "node_count" {

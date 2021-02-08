@@ -1,6 +1,6 @@
 module "etcd_asg" {
-  source = "../../../modules/aws/compute/asg"
-common_tags=var.common_tags
+  source              = "../../../modules/aws/compute/asg"
+  common_tags         = var.common_tags
   name                = "${var.name}-etcd"
   userdata            = data.template_file.etcd_userdata.rendered
   health_check_type   = "EC2"

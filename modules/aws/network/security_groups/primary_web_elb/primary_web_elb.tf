@@ -2,7 +2,7 @@ variable "vpc_id" {}
 
 variable "name" {}
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 resource "aws_security_group" "web_elb_front" {
   name        = "${var.name}-web-elb-world"
@@ -61,10 +61,10 @@ resource "aws_security_group" "web_elb_back" {
 }
 
 output "web_elb_sg_ids" {
-  value = "${join(",", list(aws_security_group.web_elb_front.id,
-  aws_security_group.web_elb_back.id))}"
+  value = join(",", list(aws_security_group.web_elb_front.id,
+  aws_security_group.web_elb_back.id))
 }
 
 output "web_elb_backend_sg_id" {
-  value = "${aws_security_group.web_elb_back.id}"
+  value = aws_security_group.web_elb_back.id
 }

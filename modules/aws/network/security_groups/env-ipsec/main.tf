@@ -3,11 +3,11 @@ variable "name" {}
 variable "vpc_id" {}
 
 variable "environment_cidrs" {
-  type=list
+  type = list(any)
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 resource "aws_security_group" "rancher_ip_sec" {

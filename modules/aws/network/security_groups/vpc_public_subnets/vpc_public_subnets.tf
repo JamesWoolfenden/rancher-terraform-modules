@@ -5,7 +5,7 @@ variable "vpc_id" {}
 variable "public_subnet_cidrs" {}
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 resource "aws_security_group" "vpc_allow_from_public_subnets" {
   name   = "${var.name}-vpc-allow-all-public-subnets-sg"

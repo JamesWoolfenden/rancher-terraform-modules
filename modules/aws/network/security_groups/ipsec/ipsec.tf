@@ -4,7 +4,7 @@ variable "vpc_id" {}
 
 variable "environment_cidrs" {}
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 resource "aws_security_group" "rancher_ip_sec" {

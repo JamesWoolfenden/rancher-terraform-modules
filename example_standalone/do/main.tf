@@ -5,7 +5,7 @@ variable "rancher_version_tag" {
 }
 
 variable "ssh_keys" {
-  type = list
+  type = list(any)
 }
 
 module "digital-ocean" {

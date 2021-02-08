@@ -3,7 +3,7 @@ variable "vpc_id" {}
 variable "name" {}
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 resource "aws_security_group" "bastion_host" {

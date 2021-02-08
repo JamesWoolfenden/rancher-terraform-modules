@@ -1,11 +1,11 @@
 variable "name" {}
 
 variable "security_groups" {
-  type = list
+  type = list(any)
 }
 
 variable "public_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "ssl_certificate_arn" {}

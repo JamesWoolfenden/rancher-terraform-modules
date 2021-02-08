@@ -40,7 +40,7 @@ variable "db_parameter_group" {
 
 // RDS Subnet Group Variables
 variable "db_subnet_ids" {
-  type = list
+  type = list(any)
 }
 
 variable "skip_final_snapshot" {
@@ -52,5 +52,5 @@ variable "backup_retention_period" {
 }
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }

@@ -4,7 +4,7 @@ variable "vpc_id" {}
 
 variable "private_subnet_cidrs" {}
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 resource "aws_security_group" "management_ui_elb" {
   name        = "${var.name}-management_ui_elb_sg"

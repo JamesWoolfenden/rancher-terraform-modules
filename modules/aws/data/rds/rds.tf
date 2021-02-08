@@ -4,7 +4,7 @@ module "aws_sg_db" {
   vpc_id              = var.vpc_id
   source_cidr_blocks  = var.source_cidr_blocks
   security_group_name = var.security_group_name
-  common_tags=var.common_tags
+  common_tags         = var.common_tags
 }
 
 module "aws_database" {
