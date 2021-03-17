@@ -3,7 +3,7 @@ variable "vpc_id" {}
 variable "name" {}
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 
 resource "aws_security_group" "bastion_host" {
@@ -22,7 +22,7 @@ resource "aws_security_group" "bastion_host" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [module.data.cidr]
   }
 
   tags = var.common_tags
@@ -30,4 +30,9 @@ resource "aws_security_group" "bastion_host" {
 
 output "bastion_id" {
   value = aws_security_group.bastion_host.id
+}
+
+module "data" {
+  source  = "jameswoolfenden/ip/http"
+  version = "0.3.2"
 }

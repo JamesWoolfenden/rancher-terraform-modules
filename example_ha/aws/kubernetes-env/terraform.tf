@@ -16,12 +16,12 @@ terraform {
     }
 
     rancher2 = {
-      source = "rancher/rancher2"
+      source  = "rancher/rancher2"
       version = "1.10.3"
     }
 
     rancher = {
-      source = "terraform-providers/rancher"
+      source  = "terraform-providers/rancher"
       version = "1.5.0"
     }
 

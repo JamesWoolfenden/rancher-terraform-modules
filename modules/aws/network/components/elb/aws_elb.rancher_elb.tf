@@ -29,6 +29,11 @@ resource "aws_elb" "rancher_elb" {
     target   = var.health_check_target
     interval = 7
   }
+
+  access_logs {
+    bucket  = var.lb_logs_bucket
+    enabled = true
+  }
 }
 
 resource "aws_proxy_protocol_policy" "elb_policy" {

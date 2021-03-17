@@ -5,7 +5,7 @@ variable "vpc_id" {}
 variable "vpc_cidr" {}
 
 variable "common_tags" {
-  type = map
+  type = map(any)
 }
 resource "aws_security_group" "vpc_all" {
   name   = "${var.name}-vpc-allow-all-internal-sg"

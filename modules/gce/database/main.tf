@@ -16,7 +16,13 @@ resource "google_sql_database_instance" "master" {
       ipv4_enabled = true
     }
   }
+  settings {
+    ip_configuration {
+      require_ssl = true
+    }
+  }
 }
+
 
 resource "google_sql_database" "master" {
   name     = "cattle"

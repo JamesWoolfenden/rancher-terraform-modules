@@ -1,7 +1,7 @@
 module "iam_instance_profile" {
   source = "./iam"
 
-  name = "${var.name}"
+  name = var.name
 }
 
 module "security_group" {
@@ -50,7 +50,7 @@ resource "aws_autoscaling_group" "bastion" {
 
   tag {
     key                 = "EIP"
-    value               = "${var.eip}"
+    value               = var.eip
     propagate_at_launch = true
   }
 

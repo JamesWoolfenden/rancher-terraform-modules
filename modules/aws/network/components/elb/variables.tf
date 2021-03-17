@@ -1,11 +1,11 @@
 variable "name" {}
 
 variable "security_groups" {
-  type = list
+  type = list(any)
 }
 
 variable "public_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "ssl_certificate_arn" {}
@@ -33,3 +33,5 @@ variable "health_check_target" {
 variable "proxy_proto_port_string" {
   default = ["81", "444"]
 }
+
+variable "lb_logs_bucket" {}

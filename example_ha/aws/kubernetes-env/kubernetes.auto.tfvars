@@ -17,7 +17,7 @@ cattle_agent_ip = "local-ipv4"
 project_template_id = "1pt6"
 
 rancher_api_url = ""
-aws_region="eu-west-1"
-common_tags={
-    "createdby"="terraform"
+aws_region      = "eu-west-1"
+common_tags = {
+  "createdby" = "terraform"
 }

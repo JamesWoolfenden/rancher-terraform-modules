@@ -9,7 +9,7 @@ variable "instance_type" {
 variable "docker_cmd" {}
 
 variable "ssh_keys" {
-  type = list
+  type = list(any)
 }
 
 variable "node_count" {
@@ -17,9 +17,9 @@ variable "node_count" {
 }
 
 variable "do_region" {
-  default = "sfo1"
+  default = "lon1"
 }
 
 variable "do_droplet_size" {
-  default = "2gb"
+  default = "2GB"
 }

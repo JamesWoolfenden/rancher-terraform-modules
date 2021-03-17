@@ -1,6 +1,6 @@
 
 module "compute_asg" {
-  source = "../../../modules/aws/compute/asg"
+  source              = "../../../modules/aws/compute/asg"
   name                = "${var.name}-compute"
   userdata            = data.template_file.compute_userdata.rendered
   health_check_type   = "EC2"
@@ -12,5 +12,5 @@ module "compute_asg" {
   subnet_ids          = var.subnet_ids
   vpc_id              = var.vpc_id
   instance_type       = var.aws_instance_type
-  common_tags=var.common_tags
+  common_tags         = var.common_tags
 }
