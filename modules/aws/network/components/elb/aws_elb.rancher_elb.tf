@@ -1,5 +1,6 @@
 resource "aws_elb" "rancher_elb" {
-  #checkov:skip=CKV_AWS_92
+  # checkov:skip=CKV_AWS_127: ADD REASON
+  # checkov:skip=CKV_AWS_92
   name = "${var.name}-elb"
 
   subnets                   = var.public_subnets

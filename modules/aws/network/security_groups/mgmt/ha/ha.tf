@@ -8,6 +8,7 @@ variable "common_tags" {
 }
 
 resource "aws_security_group" "management_elb" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name        = "${var.name}-management_elb_sg"
   description = "Allow ports rancher "
   vpc_id      = var.vpc_id
@@ -36,6 +37,8 @@ resource "aws_security_group" "management_elb" {
 }
 
 resource "aws_security_group" "management_allow_elb" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
+
   name        = "${var.name}-rancher_ha_allow_elb"
   description = "Allow Connection from elb"
   vpc_id      = var.vpc_id
@@ -71,6 +74,8 @@ resource "aws_security_group" "management_allow_elb" {
 }
 
 resource "aws_security_group" "management_allow_internal" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
+
   name        = "${var.name}-rancher_ha_allow_internal"
   description = "Allow Connection from internal"
   vpc_id      = var.vpc_id

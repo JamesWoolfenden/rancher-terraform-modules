@@ -9,7 +9,9 @@ variable "source_cidr_blocks" {
 variable "common_tags" {
   type = map(any)
 }
+
 resource "aws_security_group" "db_security_group" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name        = var.security_group_name
   description = "Security Group ${var.security_group_name}"
   vpc_id      = var.vpc_id

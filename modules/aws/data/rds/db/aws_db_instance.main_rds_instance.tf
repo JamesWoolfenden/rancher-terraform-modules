@@ -1,14 +1,16 @@
 resource "aws_db_instance" "main_rds_instance" {
-  identifier        = var.rds_instance_name
-  allocated_storage = var.rds_allocated_storage
-  engine            = var.rds_engine_type
-  engine_version    = var.rds_engine_version
-  instance_class    = var.rds_instance_class
-  name              = var.database_name
-  username          = var.database_user
-  password          = var.database_password
-  storage_encrypted = true
-
+  # checkov:skip=CKV_AWS_157: ADD REASON
+  allocated_storage               = var.rds_allocated_storage
+  enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
+  engine                          = var.rds_engine_type
+  engine_version                  = var.rds_engine_version
+  identifier                      = var.rds_instance_name
+  instance_class                  = var.rds_instance_class
+  monitoring_interval             = 5
+  name                            = var.database_name
+  password                        = var.database_password
+  storage_encrypted               = true
+  username                        = var.database_user
   //snapshots and backups
   skip_final_snapshot       = var.skip_final_snapshot
   copy_tags_to_snapshot     = var.skip_final_snapshot == "false" ? "true" : "false"

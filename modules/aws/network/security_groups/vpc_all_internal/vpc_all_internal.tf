@@ -7,7 +7,9 @@ variable "vpc_cidr" {}
 variable "common_tags" {
   type = map(any)
 }
+
 resource "aws_security_group" "vpc_all" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name   = "${var.name}-vpc-allow-all-internal-sg"
   vpc_id = var.vpc_id
 

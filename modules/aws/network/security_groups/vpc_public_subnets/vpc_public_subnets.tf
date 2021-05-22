@@ -7,7 +7,9 @@ variable "public_subnet_cidrs" {}
 variable "common_tags" {
   type = map(any)
 }
+
 resource "aws_security_group" "vpc_allow_from_public_subnets" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name   = "${var.name}-vpc-allow-all-public-subnets-sg"
   vpc_id = var.vpc_id
 

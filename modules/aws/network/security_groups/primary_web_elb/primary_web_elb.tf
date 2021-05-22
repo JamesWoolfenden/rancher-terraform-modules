@@ -1,10 +1,13 @@
 variable "vpc_id" {}
 
 variable "name" {}
+
 variable "common_tags" {
   type = map(any)
 }
+
 resource "aws_security_group" "web_elb_front" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name        = "${var.name}-web-elb-world"
   description = "Allow ports rancher "
   vpc_id      = var.vpc_id
@@ -33,6 +36,7 @@ resource "aws_security_group" "web_elb_front" {
 }
 
 resource "aws_security_group" "web_elb_back" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name        = "${var.name}-web-elb-hosts"
   description = "Allow Connection from elb"
   vpc_id      = var.vpc_id

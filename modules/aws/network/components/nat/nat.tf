@@ -13,6 +13,7 @@ variable "azs" {}
 variable "public_subnet_ids" {}
 
 resource "aws_eip" "nat" {
+  # checkov:skip=CKV2_AWS_19: ADD REASON
   vpc = true
 
   count = length(split(",", var.azs)) # Comment out count to only have 1 NAT

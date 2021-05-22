@@ -11,6 +11,7 @@ variable "common_tags" {
 }
 
 resource "aws_security_group" "rancher_ip_sec" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name   = "${var.name}-sg"
   vpc_id = var.vpc_id
 

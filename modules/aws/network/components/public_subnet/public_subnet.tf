@@ -1,10 +1,3 @@
-#--------------------------------------------------------------
-
-# This module creates all resources necessary for a public
-
-# subnet
-
-#--------------------------------------------------------------
 
 variable "name" {
   default = "public"
@@ -19,6 +12,7 @@ variable "azs" {}
 variable "igw_id" {}
 
 resource "aws_subnet" "public" {
+  # checkov:skip=CKV_AWS_130: Public by design
   vpc_id            = var.vpc_id
   cidr_block        = element(split(",", var.cidrs), count.index)
   availability_zone = element(split(",", var.azs), count.index)

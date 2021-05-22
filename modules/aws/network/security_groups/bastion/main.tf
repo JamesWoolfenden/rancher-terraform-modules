@@ -7,6 +7,7 @@ variable "common_tags" {
 }
 
 resource "aws_security_group" "bastion_host" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   name        = "${var.name}-bastion-host"
   description = "Security group to allow external SSH access"
   vpc_id      = var.vpc_id

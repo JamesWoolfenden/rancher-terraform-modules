@@ -56,13 +56,3 @@ repos:
       - id: checkov
         verbose: true
         entry: checkov -d modules
-  - repo: git://github.com/tfsec/tfsec
-    rev: v0.39.34
-    hooks:
-      - id: tfsec
-        entry: tfsec
-        args:
-          - modules
-        types:
-          - terraform
-        pass_filenames: false
